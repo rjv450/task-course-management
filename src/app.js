@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import errorMiddleware from './middlewares/errorMiddleware.js';
 import redis from 'redis';
 import authRoutes from './routes/authRouter.js'
+import courseRoutes from './routes/courseRouter.js';
 dotenv.config()
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/api/auth', authRoutes);
+app.use('/api/',courseRoutes)
 
 app.use(errorMiddleware)
 

@@ -1,18 +1,14 @@
 import redis from 'redis';
 import dotenv from 'dotenv';
-
 dotenv.config();
-
 
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
 });
 
-
 redisClient.connect().catch((err) => {
   console.error('Redis connection error:', err);
 });
-
 
 export const setCache = async (key, value, expiry = 3600) => {
   try {
@@ -21,7 +17,6 @@ export const setCache = async (key, value, expiry = 3600) => {
     console.error('Error setting cache:', err);
   }
 };
-
 
 export const getCache = async (key) => {
   try {
@@ -32,7 +27,6 @@ export const getCache = async (key) => {
     return null;
   }
 };
-
 
 export const deleteCache = async (key) => {
   try {

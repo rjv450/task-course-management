@@ -1,9 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// This is your Prisma schema file
 generator client {
   provider = "prisma-client-js"
 }
@@ -30,7 +25,7 @@ model Course {
   description String?
   userId      Int
   user        User      @relation("UserCourses", fields: [userId], references: [id])
-  lessons     Lesson[]
+  lessons     Lesson[]  @relation("CourseLessons")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
@@ -41,7 +36,7 @@ model Lesson {
   courseId  Int
   title     String
   content   String?
-  course    Course   @relation(fields: [courseId], references: [id])
+  course    Course   @relation("CourseLessons", fields: [courseId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
