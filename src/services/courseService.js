@@ -105,14 +105,15 @@ export const getLessonsByCourseId = async (courseId) => {
     }
 };
 
-export const deleteLessonById = async (id) => {
+export const deleteLessonById = async (id,courseId) => {
     try {
         const parsedId = parseInt(id, 10);
-        if (isNaN(parsedId)) {
+        const parseCourseId =parseInt(courseId, 10);
+        if (isNaN(parsedId) ||isNaN(parseCourseId)) {
             throw new Error('Invalid lesson ID');
         }
         const lesson = await prisma.lesson.findUnique({
-            where: { id: parsedId }
+            where: { id: parsedId,courseId:parseCourseId }
         });
         if (!lesson) {
             throw new Error('Lesson not found');

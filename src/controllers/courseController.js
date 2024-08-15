@@ -73,8 +73,8 @@ export const getLessonsByCourseIdController = async (req, res) => {
 
 export const deleteLessonController = async (req, res) => {
     try {
-        const { id } = req.params;
-        await deleteLessonById(id);
+        const { id,courseId } = req.params;
+        await deleteLessonById(id,courseId);
         res.status(204).end();
     } catch (error) {
         if (error.message.includes('Lesson not found')) {

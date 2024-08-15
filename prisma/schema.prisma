@@ -28,6 +28,7 @@ model Course {
   lessons     Lesson[]  @relation("CourseLessons")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  @@index([title]) // Add this line to create an index on the title field
 }
 
 // Lesson model associated with courses
